@@ -1,0 +1,71 @@
+version: '3'
+
+services:
+  cara:
+    image: cara:1
+    deploy:
+      mode: replicated
+      replicas: 3
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      update_config:
+        parallelism: 1
+        delay: 5s
+      placement:
+        constraints:
+          - node.hostname == docker-03
+    networks:
+      - backend
+
+  coroa:
+    image: coroa:1
+    deploy:
+      mode: replicated
+      replicas: 3
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      update_config:
+        parallelism: 1
+        delay: 5s
+      placement:
+        constraints:
+          - node.hostname =! docker-01
+    networks:
+      - backend
+
+  balancer:
+    image: ikauzak/masuda-app:1.1
+    deploy:
+      mode: replicated
+      replicas: 3
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      update_config:
+        parallelism: 1
+        delay: 5s
+      placement:
+        constraints:
+          - node.role == manager
+    networks:
+      - frontend
+      - backend
+    ports:
+      - 80:80
+    depends_on:
+      - cara
+      - coroa
+
+networks:
+  frontend:
+    driver: overlay
+  backend:
+    driver: overlay
