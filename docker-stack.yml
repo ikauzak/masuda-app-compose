@@ -2,7 +2,7 @@ version: '3'
 
 services:
   cara:
-    image: cara:1
+    image: ikauzak/masuda-app-cara:1.0
     deploy:
       mode: replicated
       replicas: 3
@@ -21,7 +21,7 @@ services:
       - backend
 
   coroa:
-    image: coroa:1
+    image: ikauzak/masuda-app-coroa:1.0
     deploy:
       mode: replicated
       replicas: 3
