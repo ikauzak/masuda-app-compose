@@ -40,7 +40,7 @@ services:
       - backend
 
   balancer:
-    image: ikauzak/masuda-app:1.1
+    image: ikauzak/masuda-app:1.2
     deploy:
       mode: replicated
       replicas: 3
