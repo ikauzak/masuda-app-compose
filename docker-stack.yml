@@ -5,7 +5,7 @@ services:
     image: ikauzak/masuda-app-cara:1.0
     deploy:
       mode: replicated
-      replicas: 1
+      replicas: 3
       restart_policy:
         condition: on-failure
         delay: 5s
@@ -16,7 +16,7 @@ services:
         delay: 5s
       placement:
         constraints:
-          - node.hostname == docker-01
+          - node.hostname != docker-01
     networks:
       - backend
 
@@ -24,7 +24,7 @@ services:
     image: ikauzak/masuda-app-coroa:1.0
     deploy:
       mode: replicated
-      replicas: 1
+      replicas: 3
       restart_policy:
         condition: on-failure
         delay: 5s
@@ -43,7 +43,7 @@ services:
     image: ikauzak/masuda-app:1.1
     deploy:
       mode: replicated
-      replicas: 1
+      replicas: 3
       restart_policy:
         condition: on-failure
         delay: 5s
