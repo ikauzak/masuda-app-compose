@@ -14,9 +14,9 @@ services:
       update_config:
         parallelism: 1
         delay: 5s
-      placement:
-        constraints:
-          - node.hostname == docker-03
+#      placement:
+#        constraints:
+#          - node.hostname == docker-03
     networks:
       - backend
 
@@ -33,9 +33,9 @@ services:
       update_config:
         parallelism: 1
         delay: 5s
-      placement:
-        constraints:
-          - node.hostname != docker-01
+#      placement:
+#        constraints:
+#          - node.hostname != docker-01
     networks:
       - backend
 
