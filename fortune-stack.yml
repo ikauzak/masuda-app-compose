@@ -2,7 +2,7 @@ version: '3'
 
 services:
   cara:
-    image: ikauzak/fortune:br
+    image: ikauzak/app-fortune-br:br
     deploy:
       mode: replicated
       replicas: 3
@@ -21,7 +21,7 @@ services:
       - backend
 
   coroa:
-    image: ikauzak/fortune:us
+    image: ikauzak/app-fortune-us:us
     deploy:
       mode: replicated
       replicas: 3
